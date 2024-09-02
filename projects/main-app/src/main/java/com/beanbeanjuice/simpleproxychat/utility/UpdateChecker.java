@@ -41,7 +41,7 @@ public class UpdateChecker {
                     Tuple.of("plugin-prefix", config.get(ConfigKey.PLUGIN_PREFIX).asString()),
                     Tuple.of("old", currentVersion),
                     Tuple.of("new", spigotVersion),
-                    Tuple.of("link", "https://www.spigotmc.org/resources/115305/")
+                    Tuple.of("link", "https://modrinth.com/plugin/simpleproxychat/")
             );
 
             notifyFunction.accept(message);
