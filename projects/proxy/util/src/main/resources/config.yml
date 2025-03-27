@@ -1,0 +1,42 @@
+# ==========================================================
+#                       INFORMATION
+#                 HEX Values are Supported
+#  Example: <#FFFFFF>Some text</#FFFFFF> this is a message!
+#         Supports Mini-Message/Legacy Color Codes
+# ==========================================================
+
+discord:
+  # True if you will be using Discord. The reload command does not work with this.
+  enabled: false
+  token: "TOKEN_HERE"
+  channels:
+    # The channel you will receive server updates in.
+    # This means when a server goes on/offline.
+    server-status: "CHANNEL_ID"
+    # The channel you will receive player updates in.
+    # This means when a player leaves, joins, or switches servers.
+    player-status: "CHANNEL_ID"
+    # This is purely for when a player talks in-game.
+    chat: "CHANNEL_ID"
+  activity:
+    # Valid Types: ONLINE, DO_NOT_DISTURB, IDLE, INVISIBLE
+    status: ONLINE
+    # Valid Types: PLAYING, STREAMING, LISTENING, WATCHING, COMPETING, CUSTOM_STATUS
+    type: "CUSTOM_STATUS"
+    # Valid placeholders are %online% and/or %max-players% (UPDATES EVERY 5 MINUTES)
+    text: "%online%/%max-players% - SimpleProxyChat by beanbeanjuice"
+
+helper:
+  # True if you will be using the helper plugin.
+  enabled: false
+  # The amount of seconds to check/sync between servers if using the helper plugin.
+  # Smaller numbers can cause errors. Beware. TODO: Check if this is still true.
+  # Each time you reload the plugin, the helpers are automatically synced.
+  sync-interval: 3
+  servers:
+    - "<your_server_ip>:<spc_helper_port>"
+
+update-notifications: true
+
+# DO NOT TOUCH THIS
+file-version: 1

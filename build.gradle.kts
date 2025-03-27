@@ -5,6 +5,8 @@ plugins {
     id("java")
 }
 
+version = "1.0.0"
+
 allprojects {
     group = "com.beanbeanjuice"
 

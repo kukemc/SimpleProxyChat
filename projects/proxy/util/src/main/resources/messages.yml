@@ -1,0 +1,20 @@
+# ==========================================================
+#                       INFORMATION
+#                 HEX Values are Supported
+#  Example: <#FFFFFF>Some text</#FFFFFF> this is a message!
+#         Supports Mini-Message/Legacy Color Codes
+# ==========================================================
+
+# Prefix for the plugin. %prefix% usable anywhere.
+prefix: "&8[<bold><rainbow>SimpleProxyChat&r&8]"
+
+minecraft:
+  messages:
+    enabled: true
+    message: "%prefix% &8[&3%server%&8] &e%player% &9» &7%message%"
+
+# The message for any updates that are sent.
+update-message: "%prefix% &7There is an update! You are on &c%old%. New version is &a%new%&7: &6%link%"
+
+# DO NOT TOUCH THIS
+file-version: 1
