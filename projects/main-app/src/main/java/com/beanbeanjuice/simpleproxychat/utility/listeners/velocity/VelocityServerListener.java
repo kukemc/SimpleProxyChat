@@ -75,6 +75,24 @@ public class VelocityServerListener {
         }
         if (!Helper.playerCanChat(plugin, player.getUniqueId(), player.getUsername())) return;
 
+        // Check if player is in admin chat mode
+        boolean isAdminChat = false;
+        try {
+            // Use reflection to avoid direct dependency on VelocityAdminChatCommand
+            Class<?> adminChatCommandClass = Class.forName("com.beanbeanjuice.simpleproxychat.commands.velocity.VelocityAdminChatCommand");
+            java.lang.reflect.Method isInAdminChatMethod = adminChatCommandClass.getMethod("isInAdminChat", UUID.class);
+            isAdminChat = (boolean) isInAdminChatMethod.invoke(null, player.getUniqueId());
+        } catch (Exception e) {
+            // If any error occurs, assume not in admin chat
+            isAdminChat = false;
+        }
+
+        // If player is in admin chat mode, cancel the original event to prevent the message from showing in the original server
+        if (isAdminChat && plugin.getConfig().get(ConfigKey.USE_PERMISSIONS).asBoolean() && 
+                player.hasPermission("simpleproxychat.adminchat")) {
+            event.setResult(PlayerChatEvent.ChatResult.denied());
+        }
+
         String finalPlayerMessage = playerMessage;
         event.getPlayer().getCurrentServer().ifPresent((connection) -> {
             VelocityChatMessageData messageData = new VelocityChatMessageData(plugin, MessageType.CHAT, connection.getServer(), player, finalPlayerMessage);

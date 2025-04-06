@@ -107,9 +107,30 @@ public class ChatHandler {
         Optional<String> optionalPlayerMessage = getValidMessage(playerMessage);
         if (optionalPlayerMessage.isEmpty()) return;
         playerMessage = optionalPlayerMessage.get();
-
-        String minecraftConfigString = config.get(ConfigKey.MINECRAFT_CHAT_MESSAGE).asString();
-        String discordConfigString = config.get(ConfigKey.MINECRAFT_DISCORD_MESSAGE).asString();
+        
+        // Check if player is in admin chat mode
+        boolean isAdminChat = false;
+        try {
+            // Use reflection to avoid direct dependency on VelocityAdminChatCommand
+            Class<?> adminChatCommandClass = Class.forName("com.beanbeanjuice.simpleproxychat.commands.velocity.VelocityAdminChatCommand");
+            java.lang.reflect.Method isInAdminChatMethod = adminChatCommandClass.getMethod("isInAdminChat", UUID.class);
+            isAdminChat = (boolean) isInAdminChatMethod.invoke(null, playerUUID);
+        } catch (Exception e) {
+            // If any error occurs, assume not in admin chat
+            isAdminChat = false;
+        }
+        
+        String minecraftConfigString;
+        String discordConfigString;
+        
+        if (isAdminChat) {
+            minecraftConfigString = config.get(ConfigKey.MINECRAFT_ADMIN_CHAT_MESSAGE).asString();
+            // Admin chat messages are not sent to Discord
+            discordConfigString = "";
+        } else {
+            minecraftConfigString = config.get(ConfigKey.MINECRAFT_CHAT_MESSAGE).asString();
+            discordConfigString = config.get(ConfigKey.MINECRAFT_DISCORD_MESSAGE).asString();
+        }
 
         String aliasedServerName = Helper.convertAlias(config, serverName);
 

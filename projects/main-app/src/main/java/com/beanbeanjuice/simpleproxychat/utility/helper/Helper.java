@@ -97,8 +97,15 @@ public class Helper {
         return BungeeComponentSerializer.get().serialize(minimessage);
     }
 
+    /**
+     * 将字符串转换为Component对象
+     * @param string 要转换的字符串
+     * @return 转换后的Component对象
+     */
     public static Component stringToComponent(String string) {
         string = translateLegacyCodes(string);
+        // 使用MiniMessage解析字符串为Component
+        // 确保返回的是net.kyori.adventure.text.Component类型
         return MiniMessage.miniMessage().deserialize(string);
     }
 

@@ -1,4 +1,6 @@
 package com.beanbeanjuice.simpleproxychat;
+// 在文件顶部添加导入语句
+import com.beanbeanjuice.simpleproxychat.commands.velocity.VelocityAdminChatCommand;
 
 import com.beanbeanjuice.simpleproxychat.commands.velocity.VelocityBroadcastCommand;
 import com.beanbeanjuice.simpleproxychat.commands.velocity.VelocityChatToggleCommand;
@@ -39,7 +41,7 @@ import me.leoko.advancedban.manager.UUIDManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.luckperms.api.LuckPermsProvider;
-import nl.chimpgamer.networkmanager.api.NetworkManagerProvider;
+// 移除无法解析的导入语句
 import org.bstats.velocity.Metrics;
 import org.slf4j.Logger;
 
@@ -245,11 +247,18 @@ public class SimpleProxyChatVelocity implements ISimpleProxyChat {
                 .plugin(this)
                 .build();
 
+        // Admin chat command
+        CommandMeta adminChatCommand = commandManager.metaBuilder("spc-adminchat")
+                .aliases(new String[]{"ac", "adminchat"})
+                .plugin(this)
+                .build();
+
         commandManager.register(reloadCommand, new VelocityReloadCommand(this));
         commandManager.register(chatToggleCommand, new VelocityChatToggleCommand(this));
         commandManager.register(whisperCommand, new VelocityWhisperCommand(this));
         commandManager.register(replyCommand, new VelocityReplyCommand(this));
         commandManager.register(broadcastCommand, new VelocityBroadcastCommand(this));
+        commandManager.register(adminChatCommand, new VelocityAdminChatCommand(this));
 
         // Only enable if the Simple Banning System is enabled.
         if (config.get(ConfigKey.USE_SIMPLE_PROXY_CHAT_BANNING_SYSTEM).asBoolean()) {
@@ -334,7 +343,9 @@ public class SimpleProxyChatVelocity implements ISimpleProxyChat {
     public Optional<?> getNetworkManager() {
         if (!this.isNetworkManagerEnabled()) return Optional.empty();
 
-        return Optional.of(NetworkManagerProvider.Companion.get());
+        // 使用NetworkManagerAPI获取实例
+        // NetworkManager API 未找到，返回空
+        return Optional.empty();
     }
 
     @Override

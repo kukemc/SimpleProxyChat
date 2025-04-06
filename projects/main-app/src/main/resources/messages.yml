@@ -20,6 +20,8 @@ minecraft:
     enabled: true
     message: "&8[&3%server%&8] &e%player% &9» &7%message%"
     vanished: "&cYou cannot send proxy messages while vanished. Your message must end with a '&e/&c' to speak."
+  admin-chat:
+    message: "&8[&4ADMIN&8] &e%player% &9» &7%message%"
   switch:
     enabled: true
     default: "&e%player% &7moved from &c%from% &7to &a%to%&7."
@@ -58,6 +60,9 @@ minecraft:
     broadcast:
       usage: "%plugin-prefix% &c/spc-broadcast (message)"
       message: "%plugin-prefix% &8[&a&lBROADCAST&r&8] &6%message%"
+    admin-chat:
+      enabled: "%plugin-prefix% &a管理员聊天模式已启用。"
+      disabled: "%plugin-prefix% &c管理员聊天模式已禁用。"
 
 # Discord Stuff
 discord:

@@ -79,6 +79,9 @@ public enum ConfigKey {
     MINECRAFT_COMMAND_PROXY_BAN_LOGIN_MESSAGE (ConfigFileType.MESSAGES, "minecraft.command.proxy-ban.login-message", String.class),
     MINECRAFT_COMMAND_BROADCAST_USAGE (ConfigFileType.MESSAGES, "minecraft.command.broadcast.usage", String.class),
     MINECRAFT_COMMAND_BROADCAST_MESSAGE (ConfigFileType.MESSAGES, "minecraft.command.broadcast.message", String.class),
+    MINECRAFT_ADMIN_CHAT_MESSAGE (ConfigFileType.MESSAGES, "minecraft.admin-chat.message", String.class),
+    MINECRAFT_COMMAND_ADMIN_CHAT_ENABLED (ConfigFileType.MESSAGES, "minecraft.command.admin-chat.enabled", String.class),
+    MINECRAFT_COMMAND_ADMIN_CHAT_DISABLED (ConfigFileType.MESSAGES, "minecraft.command.admin-chat.disabled", String.class),
 
     DISCORD_JOIN_ENABLED (ConfigFileType.MESSAGES, "discord.join.enabled", Boolean.class),
     DISCORD_JOIN_MESSAGE (ConfigFileType.MESSAGES, "discord.join.message", String.class),
